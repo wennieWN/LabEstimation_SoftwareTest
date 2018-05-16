@@ -21,7 +21,15 @@ module.exports = function (config) {
     webpack: webpackConfig,
 
     // 结果存在哪里
-    reporters: ['spec'],
+    reporters: ['spec','coverage'],
+
+      coverageReporter: {
+          dir: './coverage',
+          reporters: [
+              { type: 'lcov', subdir: '.' },
+              { type: 'text-summary' }
+          ]
+      },
 
     // 测试器环境
     browsers: ['Chrome']
