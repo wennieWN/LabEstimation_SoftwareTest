@@ -2,35 +2,38 @@
 <template>
   <div class="container-mlist">
     <div class="filter" style="background: #FFFFFF;">
-      <div class="search" >
-        <el-select v-model="search_select"  placeholder="请选择" style="margin-right: 20px">
+      <div class="search" ref="search">
+        <el-select v-model="search_select"  placeholder="请选择" style="margin-right: 20px" class="select">
           <el-option label="所有" value="1" @click.native.prevent="inputSearch"></el-option>
           <el-option label="状态" value="2" @click.native.prevent="stateSearch"></el-option>
           <el-option label="时间" value="3" @click.native.prevent="dateSearch"></el-option>
         </el-select>
-        <div id="selectInput" ref="selectInput" style="width: 60%">
-          <el-input placeholder="请输入搜索内容" @input="search"  class="input-with-select" ></el-input>
-        </div>
+          <div id="selectInput" ref="selectInput" style="width: 60%">
+              <el-input placeholder="请输入搜索内容" :value="input" @input="search"  class="input-with-select" ></el-input>
+          </div>
 
-        <div id="selectState" style="display: none">
+
+          <div id="selectState" ref="selectState" style="display: none">
           <el-select v-model="stateValue" placeholder="请选择状态" class="state-with-select" >
             <el-option
               v-for="item in options"
               :key="item.value"
               :label="item.label"
               :value="item.value"
-              @click.native.prevent=" SSearch">
+              @click.native.prevent="SSearch">
             </el-option>
           </el-select>
         </div>
-        <div id="selectDate" style="display: none;width: 200px" >
+        <div id="selectDate" ref="selectDate" style="display: none;width: 200px" >
           <el-date-picker
             type="date"
             v-model="sTime"
             @change="getSTime"
             format="yyyy-MM-dd"
-            placeholder="选择日期"
-            class="date-with-select">
+            value-format="yyyy-MM-dd"
+            placeholder="请选择日期"
+            class="date-with-select"
+            ref="datePicker">
           </el-date-picker>
         </div>
       </div>
@@ -54,22 +57,6 @@
            </el-table-column>
            <el-table-column prop="remark" label="备注" width="150"></el-table-column>
          </el-table>
-        <!--  <el-dialog title="修改状态" :visible.sync="dialogFormVisible">
-            <el-form :model="form">
-              <el-form-item label="状态" :label-width="formLabelWidth">
-                <el-select v-model="form.state" placeholder="状态">
-                  <el-option label="待审核" value="待审核"></el-option>
-                  <el-option label="待修改" value="待修改"></el-option>
-                  <el-option label="估算中" value="估算中"></el-option>
-                  <el-option label="完成" value="完成"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible=false">取 消</el-button>
-              <el-button type="primary" @click="update">确 定</el-button>
-            </div>
-          </el-dialog>-->
         </div>
       </div>
       <div style="height: 50px;"></div>
@@ -82,48 +69,59 @@
       export default {
         name:'ManagerReportTable',
         methods: {
-          inputSearch(){
+            inputSearch(){
 //            var iDiv=document.getElementById("selectInput");
-            var iDiv=this.$refs.selectInput;
+
 //            var sDiv=document.getElementById("selectState");
+                var iDiv=this.$refs.selectInput;
+                var sDiv=this.$refs.selectState;
+                var dDiv=this.$refs.selectDate;
 //            var dDiv=document.getElementById("selectDate");
-            iDiv.style.display="block";
-//            sDiv.style.display="none";
-//            dDiv.style.display="none";
-            this.search("");
-          },
+
+                iDiv.style.display="block";
+            sDiv.style.display="none";
+            dDiv.style.display="none";
+                this.search("");
+            },
           stateSearch(){
-//              this.test=2;
-            var iDiv=document.getElementById("selectInput");
-            var sDiv=document.getElementById("selectState");
-            var dDiv=document.getElementById("selectDate");
+            //var iDiv=document.getElementById("selectInput");
+            //var sDiv=document.getElementById("selectState");
+           // var dDiv=document.getElementById("selectDate");
+              var iDiv=this.$refs.selectInput;
+              var sDiv=this.$refs.selectState;
+              var dDiv=this.$refs.selectDate;
             iDiv.style.display="none";
             sDiv.style.display="block";
             dDiv.style.display="none";
             this.SSearch();
           },
           dateSearch(){
-            var iDiv=document.getElementById("selectInput");
-            var sDiv=document.getElementById("selectState");
-            var dDiv=document.getElementById("selectDate");
+           // var iDiv=document.getElementById("selectInput");
+            //var sDiv=document.getElementById("selectState");
+            //var dDiv=document.getElementById("selectDate");
+              var iDiv=this.$refs.selectInput;
+              var sDiv=this.$refs.selectState;
+              var dDiv=this.$refs.selectDate;
             iDiv.style.display="none";
             sDiv.style.display="none";
             dDiv.style.display="block";
             this.getSTime(null);
           },
           getSTime(val) {
-            console.log(val)
+              console.log(val)
+              this.onChangeValue = val;
               if( val instanceof Date || val === null){
-            if(val!=null){
+              if(val!=null){
                 var tempMonth = (val.getMonth()+1) < 10 ?  '0' + (val.getMonth()+1):(val.getMonth()+1);
                 var tempDay = val.getDate() < 10 ? '0' + val.getDate() : val.getDate();
                 this.sTime=val.getFullYear()+'-'+(tempMonth)+'-'+tempDay;//这个sTime是在data中声明的，也就是v-model绑定的值
-                console.log(val.getFullYear()+'-'+(val.getMonth()+1)+'-'+val.getDate())
+               // console.log(val.getFullYear()+'-'+(val.getMonth()+1)+'-'+val.getDate())
 
             }
             else{
                 this.sTime = "";
-            }}
+              }
+            }
             else {
                   this.sTime = val;
               }
@@ -194,12 +192,12 @@
                       temp.remark = this.allData[j].remark;
                       this.tableData4.push(temp);
                   }
-                  console.log(v.test(this.allData[j].proName))
+                 // console.log(v.test(this.allData[j].proName))
 
               }
 
           },
-          SSearch(){
+            SSearch(){
             console.log(this.stateValue)
             this.tableData4.splice(0,this.tableData4.length);
             var v = new RegExp(this.stateValue);
@@ -228,29 +226,6 @@
             }
             console.log(this.tableData4);
           },
-        /*deleteRow(index, rows) {
-          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning',
-            center: true
-          })
-            .then(() => {
-              rows.splice(index, 1),
-                this.$message(
-                  {
-                    type: 'success',
-                    message: '删除成功!'
-                  }
-                );
-            })
-            .catch(() => {
-              this.$message({
-                type: 'info',
-                message:'已取消删除!'
-              });
-            });
-        },*/
         edit(index, row) {
           this.form = this.tableData4[index]
           this.currentIndex = index
@@ -266,7 +241,8 @@
       },
       data() {
         return {
-//          test:'',
+           onChangeValue:'',
+            input: '',
           currentIndex: '',
           dialogFormVisible: false,
           tableData4: [],
