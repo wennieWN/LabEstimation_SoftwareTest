@@ -2,7 +2,7 @@ import { expect } from 'chai'
 
 import { shallowMount,createLocalVue} from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
-import ManagerReportTable from '../src/components/estimation/Mtable.vue'
+import ManagerReportTable from '../../src/components/estimation/Mtable.vue'
 
 
 

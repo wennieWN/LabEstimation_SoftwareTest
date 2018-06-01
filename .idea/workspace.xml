@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46acf672-d56b-4d8c-a924-8b017499d615" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor_2.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor_3.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/estimation/mver.spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/lcov-report/estimation/Body_CheckIFPUGFactor.vue.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/estimation/Body_CheckIFPUGFactor.vue.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/lcov-report/estimation/Body_EditIFPUGFactor.vue.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/estimation/Body_EditIFPUGFactor.vue.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/lcov-report/estimation/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/estimation/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/lcov.info" afterPath="$PROJECT_DIR$/coverage/lcov.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/estimation/Body_CheckIFPUGFactor.vue" afterPath="$PROJECT_DIR$/src/components/estimation/Body_CheckIFPUGFactor.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/estimation/Mtable.vue" afterPath="$PROJECT_DIR$/src/components/estimation/Mtable.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/Login.vue" afterPath="$PROJECT_DIR$/src/views/Login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor.spec.js" afterPath="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor.spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/estimation/Body_EditIFPUGFactor.spec.js" afterPath="$PROJECT_DIR$/test/estimation/Body_EditIFPUGFactor.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/estimation/mver.spec.js" afterPath="$PROJECT_DIR$/test/estimation/mver.spec.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,8 +31,8 @@
       <file leaf-file-name="mver.spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/estimation/mver.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1571">
-              <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+            <state relative-caret-position="135">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -117,7 +103,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/test/estimation/StepOne.spec.js" />
         <option value="$PROJECT_DIR$/src/components/estimation/Mtable.vue" />
-        <option value="$PROJECT_DIR$/test/estimation/mver.spec.js" />
         <option value="$PROJECT_DIR$/src/views/Login.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/test/estimation/Body_EditIFPUGFactor.spec.js" />
@@ -125,6 +110,7 @@
         <option value="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor_2.spec.js" />
         <option value="$PROJECT_DIR$/src/components/estimation/Body_CheckIFPUGFactor.vue" />
         <option value="$PROJECT_DIR$/test/estimation/Body_CheckIFPUGFactor.spec.js" />
+        <option value="$PROJECT_DIR$/test/estimation/mver.spec.js" />
       </list>
     </option>
   </component>
@@ -279,12 +265,12 @@
       <workItem from="1527133602828" duration="859000" />
       <workItem from="1527347864063" duration="5113000" />
       <workItem from="1527576080033" duration="17905000" />
-      <workItem from="1527831909805" duration="4877000" />
+      <workItem from="1527831909805" duration="4884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38000000" />
+    <option name="totallyTimeSpent" value="38007000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -623,6 +609,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="301" column="110" lean-forward="false" selection-start-line="301" selection-start-column="110" selection-end-line="301" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -691,8 +678,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/estimation/mver.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1571">
-          <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
