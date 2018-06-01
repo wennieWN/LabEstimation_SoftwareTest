@@ -37,7 +37,8 @@
         account: '',
         pwd: '',
         error: '',
-        url: server.url + '/api/session',
+//        url: server.url + '/api/session',
+        url:"http://120.79.245.126:8011/estimation/login",
         button_disabled: false,
       }
     },

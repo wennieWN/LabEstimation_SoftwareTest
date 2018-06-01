@@ -6,39 +6,102 @@ import Vue from 'vue'
 import ElementUI from 'element-ui';
 Vue.use(ElementUI);
 import VueResource from 'vue-resource'
-Vue.use(VueResource)
+Vue.use(VueResource);
 
-describe('Body_CheckIFPUGFactor.vue', () => {
+// Vue.http.interceptors.push(function(request, next) {
+//     console.log('this.$route:',this.$route);
+//     // modify headers
+//     if(this.$store.state.user.tokenid){
+//         request.headers.set('Authorization', this.$store.state.user.tokenid);
+//     }
+//     console.log('request.headers: ',request.headers.map);
+//     // continue to next interceptor
+//     next();
+// });
+
+
+
+describe('Body_CheckIFPUGFactor.vue', function (){
 
     const url='http://120.79.245.126:8011';
     const $route = {
         path: '/managersteptwo',
         hash: '',
-        params: { rId: '1521203368033' }
+        params: { rId: '1521203368033' },
     };
 
+    let $router = {
+        name: 'ManagerStepTwo',
+        params: { rId: '1521203368033' },
+        push(p){
+            // console.log('this.$router.name ',this.name);
+            // console.log('p.name ',p.name);
+            this.name=p.name;
+            // this.params=p.params.rId;
+            // console.log('this.$router.name ',this.name);
+        }
+    };
+    const $store = {
+        state: {
+            user : {
+                tokenid : 'adminadmin'
+            }
+        }
+    };
     const wrapper = mount(Body_CheckIFPUGFactor, {
         mocks: {
-            $route // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+            $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+            $store,
+            $router
         }
     });
 
-    describe('数据初始化', () => {
-        it('从后端读取数据', function () {
-            wrapper.vm.$nextTick(() => {
-                expect(wrapper.vm.radios[0].val).to.equal('New Development');
-                expect(wrapper.vm.selections[0].val).to.equal('Very Low');
-                expect(wrapper.vm.radios[1].val).to.equal('Personal computer');
-                expect(wrapper.vm.selections[1].val).to.equal('Very Low');
-                expect(wrapper.vm.radios[2].val).to.equal('3GL');
-                expect(wrapper.vm.selections[2].val).to.equal('Very Low');
-                expect(wrapper.vm.radios[3].val).to.equal('Yes');
-                expect(wrapper.vm.selections[3].val).to.equal('Very Low');
-                expect(wrapper.vm.inputs[0].val).to.equal('8');
-                expect(wrapper.vm.inputs[1].val).to.equal('20000');
-            })
-        })
+    describe('测试静态组件',function(){
+        it('模块名字：Body_CheckIFPUGFactor', () => {
+            expect(Body_CheckIFPUGFactor.name).to.eql('Body_CheckIFPUGFactor')
+        });
 
+        it('存在 mounted()', () => {
+            expect(typeof Body_CheckIFPUGFactor.mounted).to.eql('function')
+        });
+
+        it('存在 init()', () => {
+            expect(typeof Body_CheckIFPUGFactor.methods.init).to.eql('function')
+        });
+
+        it('存在 toMVER()', () => {
+            expect(typeof Body_CheckIFPUGFactor.methods.toMVER).to.eql('function')
+        });
+
+        it('存在 toManagerStepThree()', () => {
+            expect(typeof Body_CheckIFPUGFactor.methods.toManagerStepThree).to.eql('function')
+        });
+
+        it('存在 Submit()', () => {
+            expect(typeof Body_CheckIFPUGFactor.methods.Submit).to.eql('function')
+        });
+
+    });
+
+    describe('数据初始化', function(){
+
+        // it('从后端读取数据', function (){
+        //     Vue.config.errorHandler = done;
+        //     Vue.nextTick(() => {
+        //         expect(wrapper.vm.displays[0].items[0].value).to.equal('New Development');
+        //         expect(wrapper.vm.displays[0].items[1].value).to.equal('Very Low');
+        //         expect(wrapper.vm.displays[1].items[0].value).to.equal('Personal computer');
+        //         expect(wrapper.vm.displays[1].items[1].value).to.equal('Very Low');
+        //         expect(wrapper.vm.displays[2].items[0].value).to.equal('3GL');
+        //         expect(wrapper.vm.displays[2].items[1].value).to.equal('Very Low');
+        //         expect(wrapper.vm.displays[3].items[0].value).to.equal('Yes');
+        //         expect(wrapper.vm.displays[3].items[1].value).to.equal('Very Low');
+        //         expect(wrapper.vm.displays[4].items[0].value).to.equal('8');
+        //         expect(wrapper.vm.displays[4].items[1].value).to.equal('20000');
+        //         done();
+        //     })
+        // });
+        //
         it('数据初始化,默认值正确', function () {
             expect(wrapper.vm.editDialogVisible).to.equal(false);
             expect(wrapper.vm.formDialogVisible).to.equal(false);
@@ -50,6 +113,23 @@ describe('Body_CheckIFPUGFactor.vue', () => {
         })
     });
 
+
+    describe('跳转测试', function(){
+
+        it('点击编辑按钮', function () {
+            //编辑按钮
+
+            // console.log(wrapper.vm.$router)
+            const btn = wrapper.findAll('.el-button').at(0);
+            btn.trigger('click');
+
+            expect(wrapper.vm.$router.name).to.equal('ManagerStepThree');
+            // expect(wrapper.vm.$router.params).to.equal(wrapper.vm.$route.params);
+            // wrapper.vm.$router.push({name:'ManagerStepThree'});
+            // console.log(wrapper.vm.$router)
+
+        })
+    });
 
     describe('提交弹出框', () =>{
 
@@ -86,28 +166,28 @@ describe('Body_CheckIFPUGFactor.vue', () => {
             expect(wrapper.vm.formDialogVisible).to.equal(true);
         });
 
-        it('添加状态，form.state值变为相应状态', function () {
-            btn.trigger('click');
-            wrapper.vm.$nextTick(() => {
-                const options = wrapper.vm.$el.querySelectorAll('.el-select-dropdown__item');
-                triggerEvent(options[0], 'mouseenter');
-                options[0].click();
-                wrapper.vm.$nextTick(() => {
-                    expect(wrapper.vm.form.state).to.equal('待修改');
-                })
-            })
-        });
+        // it('添加状态，form.state值变为相应状态', function () {
+        //     btn.trigger('click');
+        //     wrapper.vm.$nextTick(() => {
+        //         const options = wrapper.vm.$el.querySelectorAll('.el-select-dropdown__item');
+        //         triggerEvent(options[0], 'mouseenter');
+        //         options[0].click();
+        //         wrapper.vm.$nextTick(() => {
+        //             expect(wrapper.vm.form.state).to.equal('待修改');
+        //         })
+        //     })
+        // });
 
-        it('添加描述，form.desc值变为相应描述', function () {
-            btn.trigger('click');
-            wrapper.vm.$nextTick(() => {
-                const input = wrapper.vm.$el.querySelectorAll('.el-textarea');
-                input.value='有待修改';
-                wrapper.vm.$nextTick(() => {
-                    expect(wrapper.vm.form.desc).to.equal('有待修改');
-                })
-            })
-        });
+        // it('添加描述，form.desc值变为相应描述', function () {
+        //     btn.trigger('click');
+        //     wrapper.vm.$nextTick(() => {
+        //         const input = wrapper.vm.$el.querySelectorAll('.el-textarea');
+        //         input.value='有待修改';
+        //         wrapper.vm.$nextTick(() => {
+        //             expect(wrapper.vm.form.desc).to.equal('有待修改');
+        //         })
+        //     })
+        // });
 
         it('点击取消按钮，框消失', function () {
             wrapper.setData({formDialogVisible:true});

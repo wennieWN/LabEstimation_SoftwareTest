@@ -8,7 +8,7 @@
           <el-option label="状态" value="2" @click.native.prevent="stateSearch"></el-option>
           <el-option label="时间" value="3" @click.native.prevent="dateSearch"></el-option>
         </el-select>
-        <div id="selectInput" style="width: 60%">
+        <div id="selectInput" ref="selectInput" style="width: 60%">
           <el-input placeholder="请输入搜索内容" @input="search"  class="input-with-select" ></el-input>
         </div>
 
@@ -83,15 +83,17 @@
         name:'ManagerReportTable',
         methods: {
           inputSearch(){
-            var iDiv=document.getElementById("selectInput");
-            var sDiv=document.getElementById("selectState");
-            var dDiv=document.getElementById("selectDate");
+//            var iDiv=document.getElementById("selectInput");
+            var iDiv=this.$refs.selectInput;
+//            var sDiv=document.getElementById("selectState");
+//            var dDiv=document.getElementById("selectDate");
             iDiv.style.display="block";
-            sDiv.style.display="none";
-            dDiv.style.display="none";
+//            sDiv.style.display="none";
+//            dDiv.style.display="none";
             this.search("");
           },
           stateSearch(){
+//              this.test=2;
             var iDiv=document.getElementById("selectInput");
             var sDiv=document.getElementById("selectState");
             var dDiv=document.getElementById("selectDate");
@@ -264,6 +266,7 @@
       },
       data() {
         return {
+//          test:'',
           currentIndex: '',
           dialogFormVisible: false,
           tableData4: [],

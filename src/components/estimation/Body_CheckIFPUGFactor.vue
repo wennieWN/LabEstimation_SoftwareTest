@@ -86,7 +86,7 @@
 //        },
         methods: {
             init(){
-                this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId).then(res=>{
+                this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(res=>{
                     console.log(res.body.newVAF);
                     var trans=res.body.newVAF;
                     this.displays[0].items[0].value=trans.developmentType;
@@ -100,6 +100,9 @@
                     this.displays[4].items[0].value=trans.productivity;
                     this.displays[4].items[1].value=trans.cost;
                 },res=>{
+                    console.log(this.url + '/getRequirement/'+this.$route.params.rId);
+                    console.log(this.$store.state.user.tokenid);
+                    console.log(res.headers.map);
                     console.log('fail');
                 })
             },
@@ -159,17 +162,19 @@
                 var trans={
                     "state": this.form.state,
                     "remark": this.form.desc
-                }
+                };
+                /* istanbul ignore if  */
                 if(trans.state) {
                     this.$http.post(this.url + '/changeState/' + this.$route.params.rId, trans).then(response => {
                         this.$message({
                             type: 'success',
                             message: '已提交当前信息!'
                         });
-                    })
+                    });
                     this.$router.push({path: '/mver'});
                     this.dialogFormVisible = false;
                 }
+                /* istanbul ignore else  */
                 else {
                     this.$message({
                         type: 'error',
