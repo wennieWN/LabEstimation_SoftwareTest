@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for estimation/Body_EditIFPUGFactor.vue</title>
+    <title>Code coverage report for components/estimation/Body_EditIFPUGFactor.vue</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">estimation/</a> Body_EditIFPUGFactor.vue
+      <a href="../../index.html">all files</a> / <a href="index.html">components/estimation/</a> Body_EditIFPUGFactor.vue
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75.68% </span>
+        <span class="strong">43.24% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>28/37</span>
+        <span class='fraction'>16/37</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">75% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.5% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/8</span>
+        <span class='fraction'>2/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75.68% </span>
+        <span class="strong">43.24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/37</span>
+        <span class='fraction'>16/37</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -801,21 +801,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1216,22 +1216,22 @@
 //            console.log("showOriginalData");
 //            console.log(originalData);
 &nbsp;
-            this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(res=&gt;{
-                console.log(res.body.vaf);
-                this.radios[0].val = res.body.newVAF.developmentType;
-                this.radios[1].val = res.body.newVAF.developmentPlatform;
-                this.radios[2].val = res.body.newVAF.languageType;
-                this.radios[3].val = res.body.newVAF.dbms_Used;
-                this.selections[0].val = res.body.newVAF.rely;
-                this.selections[1].val = res.body.newVAF.cplx;
-                this.selections[2].val = res.body.newVAF.time;
-                this.selections[3].val = res.body.newVAF.sced;
-                this.inputs[0].val = res.body.newVAF.productivity;
-                this.inputs[1].val = res.body.newVAF.cost;
+            this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(res=&gt;<span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >                console.log(res.body.vaf);</span>
+<span class="cstat-no" title="statement not covered" >                this.radios[0].val = res.body.newVAF.developmentType;</span>
+<span class="cstat-no" title="statement not covered" >                this.radios[1].val = res.body.newVAF.developmentPlatform;</span>
+<span class="cstat-no" title="statement not covered" >                this.radios[2].val = res.body.newVAF.languageType;</span>
+<span class="cstat-no" title="statement not covered" >                this.radios[3].val = res.body.newVAF.dbms_Used;</span>
+<span class="cstat-no" title="statement not covered" >                this.selections[0].val = res.body.newVAF.rely;</span>
+<span class="cstat-no" title="statement not covered" >                this.selections[1].val = res.body.newVAF.cplx;</span>
+<span class="cstat-no" title="statement not covered" >                this.selections[2].val = res.body.newVAF.time;</span>
+<span class="cstat-no" title="statement not covered" >                this.selections[3].val = res.body.newVAF.sced;</span>
+<span class="cstat-no" title="statement not covered" >                this.inputs[0].val = res.body.newVAF.productivity;</span>
+<span class="cstat-no" title="statement not covered" >                this.inputs[1].val = res.body.newVAF.cost;</span>
 &nbsp;
                 //记录数据库传过来的数据
 //                this.saveOriginalData();
-                console.log("showOriginalData");
+<span class="cstat-no" title="statement not covered" >                console.log("showOriginalData");</span>
 //                console.log(originalData);
 &nbsp;
             },res=&gt;<span class="fstat-no" title="function not covered" >{</span>
@@ -1297,10 +1297,10 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 08 2018 15:19:27 GMT+0800 (CST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 08 2018 15:09:44 GMT+0800 (CST)
 </div>
 </div>
-<script src="../prettify.js"></script>
+<script src="../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -1308,6 +1308,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../sorter.js"></script>
+<script src="../../sorter.js"></script>
 </body>
 </html>

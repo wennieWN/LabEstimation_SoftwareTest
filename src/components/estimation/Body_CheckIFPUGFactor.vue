@@ -100,9 +100,9 @@
                     this.displays[4].items[0].value=trans.productivity;
                     this.displays[4].items[1].value=trans.cost;
                 },res=>{
-                    console.log(this.url + '/getRequirement/'+this.$route.params.rId);
-                    console.log(this.$store.state.user.tokenid);
-                    console.log(res.headers.map);
+//                    console.log(this.url + '/getRequirement/'+this.$route.params.rId);
+//                    console.log(this.$store.state.user.tokenid);
+//                    console.log(res.headers.map);
                     console.log('fail');
                 })
             },
@@ -163,7 +163,7 @@
                     "state": this.form.state,
                     "remark": this.form.desc
                 };
-                /* istanbul ignore if  */
+
                 if(trans.state) {
                     this.$http.post(this.url + '/changeState/' + this.$route.params.rId, trans).then(response => {
                         this.$message({
@@ -172,9 +172,9 @@
                         });
                     });
                     this.$router.push({path: '/mver'});
-                    this.dialogFormVisible = false;
+                    this.formDialogVisible = false;
                 }
-                /* istanbul ignore else  */
+
                 else {
                     this.$message({
                         type: 'error',

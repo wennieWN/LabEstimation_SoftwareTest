@@ -33,14 +33,14 @@
             value-format="yyyy-MM-dd"
             placeholder="请选择日期"
             class="date-with-select"
-            ref="datePicker">
+            ref="compo">
           </el-date-picker>
         </div>
       </div>
     </div>
     <div class="box" style="background: #FFFFFF;">
-      <div class="table">
-        <el-table :data="tableData4" align="center" style="width: 100%;margin: auto;max-width: 960px" height=400>
+      <div class="table" >
+        <el-table ref="mtable" :data="tableData4"  align="center" style="width: 100%;margin: auto;max-width: 960px" height=400>
           <el-table-column align="center"  width="80" type="index" :index="indexMethod"></el-table-column>
           <el-table-column align="center" prop="userId" label="用户名" width="100"></el-table-column>
           <el-table-column align="center" prop="proName" label="项目名称" width="100"></el-table-column>
@@ -55,7 +55,7 @@
                <el-button v-show="scope.row.state ==='待审核'" type="text" size="small" @click.native.prevent="goEst(scope.$index)">估算</el-button>
              </template>
            </el-table-column>
-           <el-table-column prop="remark" label="备注" width="150"></el-table-column>
+          <el-table-column prop="remark" label="备注" width="150"></el-table-column>
          </el-table>
         </div>
       </div>
@@ -69,7 +69,7 @@
       export default {
         name:'ManagerReportTable',
         methods: {
-            inputSearch(){
+          inputSearch(){
 //            var iDiv=document.getElementById("selectInput");
 
 //            var sDiv=document.getElementById("selectState");
@@ -108,7 +108,7 @@
             this.getSTime(null);
           },
           getSTime(val) {
-              console.log(val)
+              //console.log(val)
               this.onChangeValue = val;
               if( val instanceof Date || val === null){
               if(val!=null){
@@ -157,6 +157,7 @@
           },
            goReport:function (index) {
 //                global_.ID = this.tableData4[index].rId;
+               console.log(index)
              this.$router.push( {name:'ManagerIFPUGReport', params : {rId : this.tableData4[index].rId}})
           },
            goEst(index) {
@@ -198,7 +199,7 @@
 
           },
             SSearch(){
-            console.log(this.stateValue)
+           // console.log(this.stateValue)
             this.tableData4.splice(0,this.tableData4.length);
             var v = new RegExp(this.stateValue);
             for(var j=0;j<this.allData.length;j++){
@@ -224,20 +225,8 @@
                 this.tableData4.push(temp);
               }
             }
-            console.log(this.tableData4);
-          },
-        edit(index, row) {
-          this.form = this.tableData4[index]
-          this.currentIndex = index
-          this.dialogFormVisible = true
-        },
-        update() {
-          this.tableData4.push(this.form)
-          this.dialogFormVisible = false
-        },
-        modify(row){
-          alert(row.item.value);
-        }
+            //console.log(this.tableData4);
+          }
       },
       data() {
         return {

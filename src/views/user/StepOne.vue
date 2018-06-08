@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="stepone_content" style="background: #FFFFFF;">
+        <div class="stepone_content" style="   background: #FFFFFF;">
             <el-form class="stepone_form"  v-model="form" status-icon  ref="form" :rules="rules" label-position="left" label-width="100px" :model="form">
                 <el-form-item label="项目名称" prop="projectName">
                     <el-input v-model="form.projectName" placeholder="项目名称"></el-input>
@@ -79,8 +79,8 @@
                     this.form.projectContact = response.body.description.projectContact;
                     this.form.estimationMethod = response.body.description.estimationMethod;
                 }, response => {
-                    console.log('fail')
-                    alert('fail')
+                    console.log('fail');
+                    alert('fail');
                 }
             )
         },

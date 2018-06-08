@@ -119,20 +119,21 @@
 
             //作用：记录数据库传过来的数据
             //被调用：mounted函数中，数据传过来后
-            saveOriginalData(){
-               for(var i=0;i<dataNum;i++) {
-                   if(i<4){
-                       originalData[i]=this.radios[i].val;
-                   }
-                   else if(i>=4&&i<8){
-                       originalData[i]=this.selections[i-4].val;
-                   }
-                   else if(i>=8&&i<10){
-                       originalData[i]=this.inputs[i-8].val;
-                   }
 
-               }
-            },
+//            saveOriginalData(){
+//               for(var i=0;i<dataNum;i++) {
+//                   if(i<4){
+//                       originalData[i]=this.radios[i].val;
+//                   }
+//                   else if(i>=4&&i<8){
+//                       originalData[i]=this.selections[i-4].val;
+//                   }
+//                   else if(i>=8&&i<10){
+//                       originalData[i]=this.inputs[i-8].val;
+//                   }
+//
+//               }
+//            },
 
             //作用：比对当前数据和原始数据，标志修改过的数据，即state置1
             //被调用：Next函数中，数据传过去前
@@ -153,12 +154,13 @@
 
 
             toManagerStepTwo(){
-                this.$confirm('是否返回前页', '提示', {
+                this.$confirm('是否返回前页?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning',
                     center: true
                 }).then(() => {
+                    console.log("appear confirm")
                     this.$message({
                         type: 'success',
                         message: '返回前页!'
@@ -337,7 +339,7 @@
 //            console.log("showOriginalData");
 //            console.log(originalData);
 
-            this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId).then(res=>{
+            this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(res=>{
                 console.log(res.body.vaf);
                 this.radios[0].val = res.body.newVAF.developmentType;
                 this.radios[1].val = res.body.newVAF.developmentPlatform;
@@ -351,9 +353,9 @@
                 this.inputs[1].val = res.body.newVAF.cost;
 
                 //记录数据库传过来的数据
-                this.saveOriginalData();
+//                this.saveOriginalData();
                 console.log("showOriginalData");
-                console.log(originalData);
+//                console.log(originalData);
 
             },res=>{
                 console.log('fail');
