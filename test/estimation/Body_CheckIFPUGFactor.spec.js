@@ -88,11 +88,12 @@ describe('Body_CheckIFPUGFactor.vue', function (){
 
     });
 
-    describe('测试函数', function(){
 
-        describe("Submit()函数",function () {
+    describe('系统测试',function () {
 
-            it('未填写修改状态，当前路径不会改变', function () {
+        describe('测试按钮', function(){
+
+            it('点击编辑按钮，跳转页面', function () {
                 const wrapper = mount(Body_CheckIFPUGFactor, {
                     mocks: {
                         $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
@@ -100,76 +101,13 @@ describe('Body_CheckIFPUGFactor.vue', function (){
                         $router
                     }
                 });
-                wrapper.vm.form.state='';
-                wrapper.vm.Submit();
-                expect(wrapper.vm.$router.path).to.equal('/managersteptwo');
-            });
-
-            it('填写修改状态，当前路径改变', function () {
-                const wrapper = mount(Body_CheckIFPUGFactor, {
-                    mocks: {
-                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                        $store,
-                        $router
-                    }
-                });
-                wrapper.vm.form.state='完成';
-                wrapper.vm.Submit();
-                expect(wrapper.vm.$router.path).to.equal('/mver');
-            })
-        });
-
-        describe("toManagerStepThree()函数",function () {
-
-            it('前往编辑界面，当前路径改变', function () {
-                const wrapper = mount(Body_CheckIFPUGFactor, {
-                    mocks: {
-                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                        $store,
-                        $router
-                    }
-                });
-                wrapper.vm.toManagerStepThree();
+                //编辑按钮
+                const btn = wrapper.findAll('.el-button').at(0);
+                btn.trigger('click');
                 expect(wrapper.vm.$router.name).to.equal('ManagerStepThree');
-                expect(wrapper.vm.$router.params.rId).to.equal($route.params.rId);
             });
-        })
 
-    });
-
-    describe('测试按钮', function(){
-
-        it('点击编辑按钮，跳转页面', function () {
-            const wrapper = mount(Body_CheckIFPUGFactor, {
-                mocks: {
-                    $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                    $store,
-                    $router
-                }
-            });
-            //编辑按钮
-            const btn = wrapper.findAll('.el-button').at(0);
-            btn.trigger('click');
-            expect(wrapper.vm.$router.name).to.equal('ManagerStepThree');
-        });
-
-        it('点击提交按钮，出现框', function () {
-            const wrapper = mount(Body_CheckIFPUGFactor, {
-                mocks: {
-                    $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                    $store,
-                    $router
-                }
-            });
-            //提交按钮
-            const btn = wrapper.findAll('.el-button').at(4);
-            btn.trigger('click');
-            expect(wrapper.vm.formDialogVisible).to.equal(true);
-        });
-
-        describe("点击提交框中的确定按钮",function () {
-
-            it('未填写修改状态，当前路径不会改变', function () {
+            it('点击提交按钮，出现框', function () {
                 const wrapper = mount(Body_CheckIFPUGFactor, {
                     mocks: {
                         $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
@@ -177,121 +115,128 @@ describe('Body_CheckIFPUGFactor.vue', function (){
                         $router
                     }
                 });
-                wrapper.vm.form.state='';
-                //确定按钮
-                const btn = wrapper.findAll('.el-button').at(2);
-                expect(btn.text()).to.contain('确 定');
+                //提交按钮
+                const btn = wrapper.findAll('.el-button').at(4);
                 btn.trigger('click');
-                expect(wrapper.vm.$router.path).to.equal('/managersteptwo');
+                expect(wrapper.vm.formDialogVisible).to.equal(true);
             });
 
-            it('填写修改状态，当前路径改变', function () {
-                const wrapper = mount(Body_CheckIFPUGFactor, {
-                    mocks: {
-                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                        $store,
-                        $router
-                    }
-                });
-                wrapper.vm.form.state='完成';
-                //确定按钮
-                const btn = wrapper.findAll('.el-button').at(2);
-                expect(btn.text()).to.contain('确 定');
-                btn.trigger('click');
-                expect(wrapper.vm.$router.path).to.equal('/mver');
-            })
-        });
+            describe("点击提交框中的确定按钮",function () {
 
-        it('点击提交框中的取消按钮，框消失', function () {
-            const wrapper = mount(Body_CheckIFPUGFactor, {
-                mocks: {
-                    $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                    $store,
-                    $router
-                }
-            });
-            //取消按钮
-            const btn = wrapper.findAll('.el-button').at(1);
-            btn.trigger('click');
-            expect(wrapper.vm.formDialogVisible).to.equal(false);
-        });
-
-        describe("点击返回按钮",function () {
-
-            it('点击返回按钮，弹出消息窗口', function () {
-                const wrapper = mount(Body_CheckIFPUGFactor, {
-                    mocks: {
-                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                        $store,
-                        $router
-                    }
-                });
-                //返回按钮
-                const btn = wrapper.findAll('.el-button').at(3);
-                expect(btn.text()).to.contain('返回');
-                btn.trigger('click');
-                expect(document.querySelector('.el-message-box__wrapper')).to.exist;
-            });
-
-            describe('消息窗口的按钮', function () {
-                const wrapper = mount(Body_CheckIFPUGFactor, {
-                    mocks: {
-                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
-                        $store,
-                        $router
-                    }
-                });
-                //返回按钮
-                const btn = wrapper.findAll('.el-button').at(3);
-                expect(btn.text()).to.contain('返回');
-                btn.trigger('click');
-
-                it('存在确定按钮', function () {
-
+                it('未填写修改状态，当前路径不会改变', function () {
+                    const wrapper = mount(Body_CheckIFPUGFactor, {
+                        mocks: {
+                            $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+                            $store,
+                            $router
+                        }
+                    });
+                    wrapper.vm.form.state='';
                     //确定按钮
-                    return Vue.nextTick()
-                        .then(function () {
-                            let btn=document.querySelector('.el-message-box__wrapper').querySelectorAll('.el-button')[1];
-                            expect(btn).to.exist;
-                            expect(btn.textContent).to.contain('确定')
-                            btn.click();
-                        });
+                    const btn = wrapper.findAll('.el-button').at(2);
+                    expect(btn.text()).to.contain('确 定');
+                    btn.trigger('click');
+                    expect(wrapper.vm.$router.path).to.equal('/managersteptwo');
                 });
 
-                it('点击确定按钮，改变路径', function () {
-                    return Vue.nextTick()
-                        .then(function () {
-                            expect(wrapper.vm.$router.path).to.equal('/mver');
-                        });
+                it('填写修改状态，当前路径改变', function () {
+                    const wrapper = mount(Body_CheckIFPUGFactor, {
+                        mocks: {
+                            $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+                            $store,
+                            $router
+                        }
+                    });
+                    wrapper.vm.form.state='完成';
+                    //确定按钮
+                    const btn = wrapper.findAll('.el-button').at(2);
+                    expect(btn.text()).to.contain('确 定');
+                    btn.trigger('click');
+                    expect(wrapper.vm.$router.path).to.equal('/mver');
+                })
+            });
+
+            it('点击提交框中的取消按钮，框消失', function () {
+                const wrapper = mount(Body_CheckIFPUGFactor, {
+                    mocks: {
+                        $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+                        $store,
+                        $router
+                    }
+                });
+                //取消按钮
+                const btn = wrapper.findAll('.el-button').at(1);
+                btn.trigger('click');
+                expect(wrapper.vm.formDialogVisible).to.equal(false);
+            });
+
+            describe("点击返回按钮",function () {
+
+                it('点击返回按钮，弹出消息窗口', function () {
+                    const wrapper = mount(Body_CheckIFPUGFactor, {
+                        mocks: {
+                            $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+                            $store,
+                            $router
+                        }
+                    });
+                    //返回按钮
+                    const btn = wrapper.findAll('.el-button').at(3);
+                    expect(btn.text()).to.contain('返回');
+                    btn.trigger('click');
+                    expect(document.querySelector('.el-message-box__wrapper')).to.exist;
                 });
 
-                it('存在取消按钮', function () {
+                describe('消息窗口的按钮', function () {
+                    const wrapper = mount(Body_CheckIFPUGFactor, {
+                        mocks: {
+                            $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+                            $store,
+                            $router
+                        }
+                    });
+                    //返回按钮
+                    const btn = wrapper.findAll('.el-button').at(3);
+                    expect(btn.text()).to.contain('返回');
+                    btn.trigger('click');
 
-                    //取消按钮
-                    return Vue.nextTick()
-                        .then(function () {
-                            let btn=document.querySelector('.el-message-box__wrapper').querySelectorAll('.el-button')[0];
-                            expect(btn).to.exist;
-                            expect(btn.textContent).to.contain('取消');
-                            btn.click();
-                        });
+                    it('存在确定按钮', function () {
+
+                        //确定按钮
+                        return Vue.nextTick()
+                            .then(function () {
+                                let btn=document.querySelector('.el-message-box__wrapper').querySelectorAll('.el-button')[1];
+                                expect(btn).to.exist;
+                                expect(btn.textContent).to.contain('确定');
+                                btn.click();
+                            });
+                    });
+
+                    it('点击确定按钮，改变路径', function () {
+                        return Vue.nextTick()
+                            .then(function () {
+                                expect(wrapper.vm.$router.path).to.equal('/mver');
+                            });
+                    });
+
+                    it('存在取消按钮', function () {
+
+                        //取消按钮
+                        return Vue.nextTick()
+                            .then(function () {
+                                let btn=document.querySelector('.el-message-box__wrapper').querySelectorAll('.el-button')[0];
+                                expect(btn).to.exist;
+                                expect(btn.textContent).to.contain('取消');
+                                btn.click();
+                            });
+                    });
                 });
             });
         });
     });
-    describe('数据初始化', function(){
 
-        it('数据初始化,默认值正确', function () {
-            expect(wrapper.vm.editDialogVisible).to.equal(false);
-            expect(wrapper.vm.formDialogVisible).to.equal(false);
-            expect(wrapper.vm.form.state).to.equal('');
-            expect(wrapper.vm.form.desc).to.equal('');
-            expect(wrapper.vm.formLabelWidth).to.equal('120px');
-            expect(wrapper.vm.url).to.equal(url+ '/estimation');
-
-        });
-
-        it('从后端读取数据，成功', function (){
+    describe('集成测试',function () {
+        it('API接口', function (){
             expect(wrapper.vm.displays[0].items[0].value).to.equal('New Development');
             expect(wrapper.vm.displays[0].items[1].value).to.equal('Normal');
             expect(wrapper.vm.displays[1].items[0].value).to.equal('Personal computer');
@@ -303,7 +248,57 @@ describe('Body_CheckIFPUGFactor.vue', function (){
             expect(wrapper.vm.displays[4].items[0].value).to.equal('8');
             expect(wrapper.vm.displays[4].items[1].value).to.equal('10000');
         });
-
     });
+
+
+    // describe('测试函数', function(){
+    //
+    //     describe("Submit()函数",function () {
+    //
+    //         it('未填写修改状态，当前路径不会改变', function () {
+    //             const wrapper = mount(Body_CheckIFPUGFactor, {
+    //                 mocks: {
+    //                     $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+    //                     $store,
+    //                     $router
+    //                 }
+    //             });
+    //             wrapper.vm.form.state='';
+    //             wrapper.vm.Submit();
+    //             expect(wrapper.vm.$router.path).to.equal('/managersteptwo');
+    //         });
+    //
+    //         it('填写修改状态，当前路径改变', function () {
+    //             const wrapper = mount(Body_CheckIFPUGFactor, {
+    //                 mocks: {
+    //                     $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+    //                     $store,
+    //                     $router
+    //                 }
+    //             });
+    //             wrapper.vm.form.state='完成';
+    //             wrapper.vm.Submit();
+    //             expect(wrapper.vm.$router.path).to.equal('/mver');
+    //         })
+    //     });
+    //
+    //     describe("toManagerStepThree()函数",function () {
+    //
+    //         it('前往编辑界面，当前路径改变', function () {
+    //             const wrapper = mount(Body_CheckIFPUGFactor, {
+    //                 mocks: {
+    //                     $route, // 在挂载组件之前添加仿造的 `$route` 对象到 Vue 实例中
+    //                     $store,
+    //                     $router
+    //                 }
+    //             });
+    //             wrapper.vm.toManagerStepThree();
+    //             expect(wrapper.vm.$router.name).to.equal('ManagerStepThree');
+    //             expect(wrapper.vm.$router.params.rId).to.equal($route.params.rId);
+    //         });
+    //     })
+    //
+    // });
+
 });
 

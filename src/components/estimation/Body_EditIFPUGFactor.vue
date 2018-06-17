@@ -189,11 +189,12 @@
                     "cost": this.inputs[1].val
                 };
 
-                console.log("showTransData:");
-                console.log(trans);
+//                console.log("showTransData:");
+//                console.log(trans);
 
 
                 if(isNumber(trans.productivity)&&isNumber(trans.cost)) {
+                    this.valid=true;
                     this.$confirm('是否提交当前信息, 进入下一步骤?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
@@ -216,6 +217,7 @@
                     });
                 }
                 else {
+                    this.valid=false;
                     this.$message({
                         type: 'error',
                         message: '请输入数字！'
@@ -317,7 +319,8 @@
                         place:"请输入内容"
                     }
                 ],
-                url: server.estimation + '/estimation'
+                url: server.estimation + '/estimation',
+                valid:false
             };
         },
 
@@ -340,7 +343,8 @@
 //            console.log(originalData);
 
             this.$http.get(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(res=>{
-                console.log(res.body.vaf);
+//                console.log(res.body.vaf);
+//                console.log(this.url + '/getRequirement/'+this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}});
                 this.radios[0].val = res.body.newVAF.developmentType;
                 this.radios[1].val = res.body.newVAF.developmentPlatform;
                 this.radios[2].val = res.body.newVAF.languageType;
@@ -354,7 +358,7 @@
 
                 //记录数据库传过来的数据
 //                this.saveOriginalData();
-                console.log("showOriginalData");
+//                console.log("showOriginalData");
 //                console.log(originalData);
 
             },res=>{

@@ -2,8 +2,8 @@
 <template>
 <div>
     <div class="stepone_section" style="background: #EEF1F5;">
-        <HeadBarLight v-show="isLogin"></HeadBarLight>
-        <HeadBarLight2 v-show="!isLogin"></HeadBarLight2>
+        <!--<HeadBarLight v-show="isLogin"></HeadBarLight>-->
+        <!--<HeadBarLight2 v-show="!isLogin"></HeadBarLight2>-->
         <div class="header1">
             <div class="page-header1">
                 <div class="header1-container">
@@ -70,15 +70,17 @@
             HeadBarLight2
         },
         mounted: function () {
-            this.$http.get(this.url + '/getRequirement/' + this.$route.params.rId).then(response => {
+            this.$http.get(this.url + '/getRequirement/' + this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}}).then(response => {
                     console.log('save success');
-                    console.log(response.body);
+//                    console.log(response.body);
                     this.form.projectName = response.body.description.projectName;
                     this.form.projectDescription = response.body.description.projectDescription;
                     this.form.projectLeader = response.body.description.projectLeader;
                     this.form.projectContact = response.body.description.projectContact;
                     this.form.estimationMethod = response.body.description.estimationMethod;
                 }, response => {
+                console.log(this.url + '/getRequirement/' + this.$route.params.rId,{headers: {Authorization : this.$store.state.user.tokenid}})
+//                    console.log(response);
                     console.log('fail');
                     alert('fail');
                 }
@@ -114,7 +116,8 @@
                     ],
                 },
 
-                url: server.estimation + '/estimation'
+                url: server.estimation + '/estimation',
+                formValid:false
             }
         },
         created() {
@@ -128,12 +131,9 @@
                     this.isLogin = false;
             },
             toStepTwo(formName) {
-                console.log(this.$refs)
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-
-
-
+                        this.formValid=true;
                         var description = this.form
                         this.$http.post(this.url + '/addDescription/' + this.$route.params.rId, description).then(response => {
                                 console.log('save success')
@@ -144,6 +144,7 @@
                             }
                         )
                     } else {
+                        this.formValid=false;
                         this.$message({
                             type: 'warning',
                             message: '请修改完善表单!'
@@ -151,15 +152,13 @@
                         return false;
                     }
                 })
-
             },
             toReport(formName) {
-
 
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
 
-
+                        this.formValid=true;
                         var description = this.form
                         this.$http.post(this.url + '/addDescription/' + this.$route.params.rId, description).then(response => {
                                 console.log('save success')
